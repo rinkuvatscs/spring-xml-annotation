@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+
+	<!-- xml.spring.simple.spring.example started -->
+
+	<bean id="studentbean" class="xml.spring.simple.spring.example.Student">
+		<property name="name" value="Rinku Sharma" />
+	</bean>
+
+	<bean id="studentbeanforconstrutor" class="xml.spring.simple.spring.example.Student">
+		<constructor-arg value="Consturtor Args Rinku Sharma"></constructor-arg>
+	</bean>
+
+
+	<bean id="address" class="xml.spring.construtor.args.Address">
+		<constructor-arg value="Heera Colony , Sikandrabad , UP"
+			type="String"></constructor-arg>
+	</bean>
+
+	<bean id="employee" class="xml.spring.construtor.args.Employee">
+		<constructor-arg>
+			<ref bean="address" />
+		</constructor-arg>
+	</bean>
+
+
+	<bean id="employeeDuplicate" class="xml.spring.construtor.args.Employee">
+		<constructor-arg>
+			<ref bean="address" />
+		</constructor-arg>
+	</bean>
+
+	<!-- LIST WITH STRING VALUES -->
+	<!-- <bean id="employeListMapAsConstructorArgs" class="xml.spring.construtor.args.Employee"> 
+		<constructor-arg > <list> <value>Samsung</value> <value>Nokia</value> <value>Moto 
+		G</value> <value>I Phone</value> </list> </constructor-arg> </bean> -->
+
+
+	<bean id="nokiaMobile" class="xml.spring.construtor.args.MobileName">
+		<property name="mobileName" value="Nokia Custom using Property"></property>
+	</bean>
+
+	<bean id="motoGMobile" class="xml.spring.construtor.args.MobileName">
+		<constructor-arg value="Moto G Custom"></constructor-arg>
+	</bean>
+
+	<bean id="iPhoneMobile" class="xml.spring.construtor.args.MobileName">
+		<constructor-arg value="I Phone Custom"></constructor-arg>
+	</bean>
+	<bean id="employeListMapAsConstructorArgsForCustomObject" class="xml.spring.construtor.args.Employee">
+		<constructor-arg>
+			<list>
+				<ref bean="nokiaMobile" />
+				<ref bean="motoGMobile" />
+				<ref bean="iPhoneMobile" />
+			</list>
+		</constructor-arg>
+
+		<property name="contactMap">
+			<map>
+				<entry key="Rinku" value="9759569142" />
+				<entry key="Abc" value="9759569143" />
+				<entry key="Def" value="9759569144" />
+				<entry key="Ghi" value="9759569145" />
+			</map>
+		</property>
+	</bean>
+
+
+	<!-- xml.spring.simple.spring.example ended -->
+
+
+	<!-- xml.spring.ampersand.in.spring started -->
+
+	<bean id="customfb" class="xml.spring.ampersand.in.spring.CustomFactoryBean" />
+
+	<!-- xml.spring.ampersand.in.spring ended -->
+
+	<!-- Inheriting Bean Example -->
+
+	<bean id="e1" class="xml.spring.inheriting.beans.Employee">
+		<constructor-arg value="101"></constructor-arg>
+		<constructor-arg value="Sachin"></constructor-arg>
+	</bean>
+
+	<bean id="address1" class="xml.spring.inheriting.beans.Address">
+		<constructor-arg value="21,Lohianagar"></constructor-arg>
+		<constructor-arg value="Ghaziabad"></constructor-arg>
+		<constructor-arg value="UP"></constructor-arg>
+		<constructor-arg value="USA"></constructor-arg>
+	</bean>
+
+	<bean id="e2" class="xml.spring.inheriting.beans.Employee" parent="e1">
+		<constructor-arg ref="address1"></constructor-arg>
+	</bean>
+
+
+	<!-- Inheriting Bean Ends -->
+
+
+
+</beans>
