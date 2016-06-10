@@ -5,24 +5,13 @@ import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import com.global.context.ContextLodaer;
+
 import xml.spring.simple.spring.example.Student;
 
 public class ConstrutorArgsMain {
-	static Resource resource = null ; 
-	static BeanFactory beanFactory = null ;
-	public static BeanFactory getBeanFactory() {
-		return beanFactory;
-	}
-
-
-	public static void setBeanFactory(BeanFactory beanFactory) {
-		ConstrutorArgsMain.beanFactory = beanFactory;
-	}
-
-	static{
-		resource = new ClassPathResource("spring.xml");
-		beanFactory = new XmlBeanFactory(resource);
-	}
+	
+	private static BeanFactory beanFactory = ContextLodaer.getBeanFactory();
 	
 	public static void main(String[] args) {
 		usingXmlBeanFactory();
