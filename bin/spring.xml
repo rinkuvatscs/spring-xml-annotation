@@ -103,6 +103,73 @@
 
 	<!-- Inheriting Bean Ends -->
 
+	<!-- AOP EXAMPLES -->
 
+	<bean id="A" class="xml.spring.aop.A" />
+
+	<!-- This Class will before method execution -->
+	<bean id="beforeAdvisor" class="xml.spring.aop.BeforeAdvisor" />
+
+	<!-- beforeProxy class is responsible for execution of beforeAdvisor Bean 
+		ID using org.springframework.aop.framework.ProxyFactoryBean which is responsible -->
+	<bean id="beforeProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="A" />
+		<property name="interceptorNames">
+			<list>
+				<value>beforeAdvisor</value>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- This class will run after execution of this method -->
+	<bean id="afterAdvisor" class="xml.spring.aop.AfterAdvisor" />
+
+	<!-- afterProxy class is responsible for execution of afterAdvisor Bean 
+		ID using org.springframework.aop.framework.ProxyFactoryBean which is responsible -->
+	<bean id="afterProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="A" />
+		<property name="interceptorNames">
+			<list>
+				<value>afterAdvisor</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- This class will run after execution of this method -->
+	<bean id="aroundAdvisor" class="xml.spring.aop.AroundAdvisor" />
+
+	<!-- aroundProxy class is responsible for execution of aroundAdvisor Bean 
+		ID using org.springframework.aop.framework.ProxyFactoryBean which is responsible -->
+	<bean id="aroundProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="A" />
+		<property name="interceptorNames">
+			<list>
+				<value>aroundAdvisor</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="validator" class="xml.spring.aop.Validator"></bean>
+	<bean id="throwsAdvisor" class="xml.spring.aop.ThrowsAdvisor"></bean>
+
+	<bean id="throwsProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="validator"></property>
+		<property name="interceptorNames">
+			<list>
+				<value>throwsAdvisor</value>
+			</list>
+		</property>
+	</bean>
+
+
+<!-- AOP using AspectJ using Annotations and spring.xml for bean definition -->
+  <bean id="operation" class="annotation.spring.aop.with.spring.xml.Operation" />  
+    <bean id="trackOperation" class="annotation.spring.aop.with.spring.xml.TrackOperation"></bean>  
+      
+    <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/>  
 
 </beans>
